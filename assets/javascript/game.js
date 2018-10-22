@@ -1,6 +1,6 @@
 // This is an array holds the alphabet the computer will choose from.
 
-var computerAlphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var availableLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // These variables will show the user the number of wins and losses they have from their current play session.
 
@@ -19,25 +19,42 @@ var userGuessText = document.getElementById("user-guess");
 
 //
 
-document.onkeyup = function(event) {
-    
+document.onkeydown = function(event) {
     
     var userGuess = event.key;
+    var validGuess;
 
-    var computerLetter = computerAlphabet[Math.floor(Math.random()* computerAlphabet.length)];
+    var computerLetter = availableLetters[Math.floor(Math.random()* availableLetters.length)];
 
-    if (userGuess == computerLetter) {
-        wins++;
-        console.log("User guessed the correct letter.")
+    for (i = 0; i < availableLetters.length; i++) {
+        if (userGuess == availableLetters[i]) {
+            validGuess = true;
+            console.log("You typed a key.")
+        }
+
+        else if (userGuess !== availableLetters[i]){
+            validGuess = false;
+            alert("Invalid Option. Please type a letter");
+            console.log("Yo shit's broken dawg");
+            console.log(userGuess);
+        }
     }
 
-    else if(userGuess != computerLetter && guessesLeft != "0") { 
+    if (userGuess === computerLetter && validGuess == true) {
+        wins++;
+        guessesLeft = 15;
+        alert("You win! The correct letter was: " + computerLetter);
+        console.log("User guessed the correct letter.");
+    }
+
+    else if (userGuess != computerLetter && guessesLeft > "0" && validGuess === true) { 
         guessesLeft--;
-        console.log("User chose the incorrect letter and has" + guessesLeft + "left")
+        console.log("The letter " + userGuess + " was incorrect. You have " + guessesLeft + " guesses left");
     }
 
     else {
-        console.log("You Lose! The correct letter was:" + computerLetter + "!")
+        guessesLeft = 15;
+        alert("You Lose");
+        console.log("You Lose! The correct letter was:" + computerLetter + "!");
     }
-}
-
+}  
