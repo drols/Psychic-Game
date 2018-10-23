@@ -19,26 +19,28 @@ var userGuessText = document.getElementById("user-guess");
 
 //
 
-document.onkeydown = function(event) {
+document.onkeyup = function(event) {
     
     var userGuess = event.key;
     var validGuess;
 
     var computerLetter = availableLetters[Math.floor(Math.random()* availableLetters.length)];
 
+
+// Input Validator limiting inputs to only characters in the availableLetters array.
+
     for (i = 0; i < availableLetters.length; i++) {
         if (userGuess == availableLetters[i]) {
             validGuess = true;
-            console.log("You typed a key.")
+            i = availableLetters.length + 1;
         }
 
-        else if (userGuess !== availableLetters[i]){
+        else {
             validGuess = false;
-            alert("Invalid Option. Please type a letter");
-            console.log("Yo shit's broken dawg");
-            console.log(userGuess);
         }
+
     }
+    
 
     if (userGuess === computerLetter && validGuess == true) {
         wins++;
@@ -52,9 +54,15 @@ document.onkeydown = function(event) {
         console.log("The letter " + userGuess + " was incorrect. You have " + guessesLeft + " guesses left");
     }
 
-    else {
+    else if(userGuess != computerLetter && guessesLeft === "0" && validGuess === true) {
         guessesLeft = 15;
         alert("You Lose");
         console.log("You Lose! The correct letter was:" + computerLetter + "!");
     }
-}  
+
+    else{
+        alert("You have typed an invalid key. Please choose any letter from A to Z");
+    }
+}
+
+
