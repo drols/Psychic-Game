@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Psychic Game!</title>
     <script src="assets/javascript/game.js" type="text/javascript"></script>
 </head>
@@ -12,14 +10,73 @@
 
 <title>The Psychic Game!</title>
 
+<p id="wins"></p>
+<p id="letters-remaining"></p>
+<p id="letters-guessed"></p>
+<p id="user-guess"></p>
 
-  <div>
-    <h1 id="title-directions">Guess what letter I'm thinking of!</h1>
-    <h2 id="wins"></h2>
-    <h2 id="losses"></h2>
-    <p id="guesses-left">Number of Guesses Left: </p>
-    <p id="user-guess">Your guesses so far: </p>
-  </div>
+<!-- <script>
+
+  var availableLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+  var selectedLetters = [];
+
+  var score = 0;
+  var letterIndex = 0;
+
+  var computerGuess = availableLetters[Math.floor(Math.random() * availableLetters.length)]
+
+  
+
+  function renderGame() {
+
+    
+    if (letterIndex <= (availableLetters.length - 1)) {
+      document.querySelector("#letters-remaining").innerHTML = "Remaining letters: " + availableLetters;
+
+      document.querySelector("#letters-guessed").innerHTML = "Letters you have guessed: " + selectedLetters;
+    }
+    else {
+      document.querySelector("#letters-remaining").innerHTML = "Game Over!";
+      document.querySelector("#wins").innerHTML = "Final Score " + score + ".";
+    }
+  }
+
+  function updateScore() {
+    document.querySelector("#wins").innerHTML = "Score: " + score;
+  }
+
+  renderGame();
+  updateScore();
+
+  document.onkeyup = function(event) {
+
+    if(letterIndex === availableLetters.length) {
+      return;
+    }
+
+    var userInput = event.key.toLowerCase();
+
+    var index = availableLetters.indexOf(userInput);
+      
+    if (userInput === computerGuess) {
+      score++;
+      updateScore();
+    }
+    
+    if (index > -1) {
+        availableLetters.splice(index, 1);
+        selectedLetters.push(userInput);
+        console.log(userInput);
+        console.log(computerGuess);
+      };
+
+    letterIndex++;
+    renderGame();
+
+  };
+
+</script> -->
 
 
 
